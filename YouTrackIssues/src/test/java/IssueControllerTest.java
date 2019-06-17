@@ -64,7 +64,7 @@ public class IssueControllerTest {
 
     @Test
     public void testCreateIssueBigText() {
-        final int len = 5;
+        final int len = 5000;
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < len; i++) {
             sb.append("a");
@@ -76,13 +76,13 @@ public class IssueControllerTest {
     @Test
     public void testCreateIssueMarkup() {
         issueController.createNewIssue(
-                "Name",
+                "# Name",
                 "# Desc" + System.lineSeparator() +
                 "* First" + System.lineSeparator() +
                 "* Second"
         );
         final Issue actual = issueController.getLastIssue();
-        assertEquals(actual.getSummary(), "Name");
+        assertEquals(actual.getSummary(), "# Name");
         assertEquals(
                 actual.getDescription(),
                 " Desc" + System.lineSeparator() +
